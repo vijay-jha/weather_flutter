@@ -69,13 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Expanded(
-                  child: ListView(
-                children: [
-                  HomePageCard(),
-                  HomePageCard(),
-                  HomePageCard(),
-                ],
-              ))
+                child: ListView(
+                  children: [
+                    HomePageCard(
+                        image_src: 'assets/images/weather_images/7.png'),
+                    HomePageCard(
+                      image_src: 'assets/images/money.png',
+                      image_height: 100,
+                    ),
+                    HomePageCard(image_src: 'assets/images/ashoka_symbol.png'),
+                  ],
+                ),
+              )
             ],
           )),
     );
