@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:weather/registration.dart';
+import 'package:weather/screens/home_screen.dart';
+import 'package:weather/screens/user_location_screen.dart';
+import 'package:weather/screens/weather_detail_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,12 +19,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Your मौसम',
+      title: 'आपका मौसम',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const Registration(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, userSnapShot) {
+          if (userSnapShot.hasData) {
+            return HomeScreen();
+          }
+          return Registration();
+        },
+      ),
+      // home: const Registration(),
+      routes: {
+        '/weather_detail_screen': (context) => WeatherDetailScreen(),
+        '/user_location_screen': (context) => UserLocationScreen(),
+      },
     );
   }
 }
