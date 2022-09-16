@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
 class HomePageCard extends StatefulWidget {
-  HomePageCard({this.image_src, this.image_height = 100});
-  final image_src;
-  double image_height;
+  HomePageCard({
+    required this.imageSrc,
+    this.isWeather = false,
+    this.textBelowIcon = false,
+    this.value = "",
+  });
+  String imageSrc;
+  String value;
+  bool textBelowIcon;
+  bool isWeather;
 
   @override
   State<HomePageCard> createState() => _HomePageCardState();
@@ -36,13 +43,63 @@ class _HomePageCardState extends State<HomePageCard> {
         Container(
           margin: const EdgeInsets.only(right: 30, top: 30),
           child: Align(
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.centerRight,
             child: Image.asset(
-              widget.image_src,
-              height: widget.image_height,
+              widget.imageSrc,
+              height: 100,
             ),
           ),
-        )
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 50, top: 60),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    text: widget.value,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 45,
+                    ),
+                    children: [
+                      if (widget.isWeather)
+                        const TextSpan(
+                          text: '°',
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                const Text(
+                  'Roorkee, Uttrakhand',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        if (widget.textBelowIcon)
+          Container(
+            margin: const EdgeInsets.only(top: 150, right: 50),
+            child: const Align(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                'Mid Rain',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )
       ],
     );
   }

@@ -72,12 +72,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView(
                   children: [
                     HomePageCard(
-                        image_src: 'assets/images/weather_images/7.png'),
-                    HomePageCard(
-                      image_src: 'assets/images/money.png',
-                      image_height: 100,
+                      imageSrc: 'assets/images/weather_images/7.png',
+                      value: '19',
+                      textBelowIcon: true,
+                      isWeather: true,
                     ),
-                    HomePageCard(image_src: 'assets/images/ashoka_symbol.png'),
+                    HomePageCard(
+                      imageSrc: 'assets/images/money.png',
+                      value: '22/Kg',
+                      textBelowIcon: true,
+                    ),
+                    HomePageCard(
+                      imageSrc: 'assets/images/ashoka_symbol.png',
+                    ),
                   ],
                 ),
               )
