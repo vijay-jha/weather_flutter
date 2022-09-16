@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   horizontal: _deviceSize.width * 0.05,
                 ),
                 margin: EdgeInsets.symmetric(
-                  vertical: _deviceSize.height * 0.01,
+                  vertical: _deviceSize.height * 0.02,
                   horizontal: _deviceSize.width * 0.03,
                 ),
                 child: const TextField(
