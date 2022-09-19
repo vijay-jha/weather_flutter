@@ -35,27 +35,29 @@ class _HomeScreenState extends State<HomeScreen> {
     }();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final _deviceSize = MediaQuery.of(context).size;
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Color.fromARGB(255, 29, 128, 64),
-            Color.fromARGB(255, 19, 113, 60)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.centerRight,
-        ),
-      ),
+      color: Colors.white,
+      // decoration: const BoxDecoration(
+      //   gradient: LinearGradient(
+      //     colors: [
+      //       Color.fromARGB(255, 29, 128, 64),
+      //       Color.fromARGB(255, 19, 113, 60)
+      //     ],
+      //     begin: Alignment.topLeft,
+      //     end: Alignment.centerRight,
+      //   ),
+      // ),
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
             'Farmicon',
             style: TextStyle(
               fontSize: 25,
+              // Added
+              color: Colors.black,
               fontWeight: FontWeight.w300,
             ),
           ),
@@ -63,7 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.transparent,
           titleSpacing: 30,
         ),
-        // backgroundColor: const Color.fromARGB(255, 26, 121, 63),
         backgroundColor: Colors.transparent,
         body: done
             ? Column(
@@ -111,7 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: ListView(
                       children: [
                         HomePageCard(
-                          imageSrc: 'assets/images/weather_images/${result['weather'][0]['icon']}.png',
+                          imageSrc:
+                              'assets/images/weather_images/${result['weather'][0]['icon']}.png',
                           value: '${result['main']['temp'].toInt()}',
                           textBelowIcon: '${result['weather'][0]['main']}',
                           isWeather: true,

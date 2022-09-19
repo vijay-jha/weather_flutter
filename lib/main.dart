@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
           if (userSnapShot.hasData) {
             return HomeScreen();
           }
-          return Registration();
+          // return Registration();
+          return HomeScreen();
         },
       ),
       // home: const Registration(),

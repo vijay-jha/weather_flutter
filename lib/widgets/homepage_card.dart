@@ -21,13 +21,18 @@ class HomePageCard extends StatefulWidget {
 class _HomePageCardState extends State<HomePageCard> {
   @override
   Widget build(BuildContext context) {
+    Size _deviceSize = MediaQuery.of(context).size;
+
     return Stack(
       children: [
         ClipPath(
           clipper: MyClipper(),
           child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-            height: 160,
+            margin: EdgeInsets.symmetric(
+              vertical: _deviceSize.height * 0.025,
+              horizontal: _deviceSize.width * 0.07,
+            ),
+            height: _deviceSize.height * 0.2,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
               gradient: const LinearGradient(
@@ -38,29 +43,32 @@ class _HomePageCardState extends State<HomePageCard> {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
-              // color: Colors.red,
             ),
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(right: 30, top: 30),
+          margin: EdgeInsets.only(
+            right: _deviceSize.width * 0.085,
+            top: _deviceSize.height * 0.035,
+          ),
           child: Align(
             alignment: Alignment.centerRight,
             child: Image.asset(
               widget.imageSrc,
-              height: 100,
+              height: _deviceSize.height * 0.13,
             ),
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(left: 50, top: 70),
+          margin: EdgeInsets.only(
+              left: _deviceSize.width * 0.14, top: _deviceSize.height * 0.088),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 200,
+                SizedBox(
+                  width: _deviceSize.width * 0.45,
                   child: RichText(
                     text: TextSpan(
                       text: widget.value,
@@ -94,14 +102,16 @@ class _HomePageCardState extends State<HomePageCard> {
         ),
         if (widget.textBelowIcon.isNotEmpty)
           Container(
-            margin: const EdgeInsets.only(top: 150, right: 50),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Text(
-                widget.textBelowIcon,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+            width: _deviceSize.width * 0.28,
+            margin: EdgeInsets.only(
+              top: _deviceSize.height * 0.188,
+              left: _deviceSize.width * 0.63,
+            ),
+            child: Text(
+              widget.textBelowIcon,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
               ),
             ),
           )
