@@ -26,7 +26,6 @@ class _WeatherDetailScreenState extends State<WeatherDetailScreen> {
 
       var response = await http.get(url);
       result = jsonDecode(response.body);
-      // print('${result['weather']['icon']}');
       setState(() {
         done = true;
       });

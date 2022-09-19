@@ -4,12 +4,14 @@ class HomePageCard extends StatefulWidget {
   HomePageCard({
     required this.imageSrc,
     this.isWeather = false,
-    this.textBelowIcon = false,
+    this.textBelowIcon = "",
     this.value = "",
+    this.cityName = "",
   });
+  String cityName;
   String imageSrc;
   String value;
-  bool textBelowIcon;
+  String textBelowIcon;
   bool isWeather;
 
   @override
@@ -51,34 +53,37 @@ class _HomePageCardState extends State<HomePageCard> {
           ),
         ),
         Container(
-          margin: const EdgeInsets.only(left: 50, top: 60),
+          margin: const EdgeInsets.only(left: 50, top: 70),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: TextSpan(
-                    text: widget.value,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 45,
+                Container(
+                  width: 200,
+                  child: RichText(
+                    text: TextSpan(
+                      text: widget.value,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: widget.textBelowIcon.isNotEmpty ? 50 : 16,
+                      ),
+                      children: [
+                        if (widget.isWeather)
+                          const TextSpan(
+                            text: '°',
+                          ),
+                      ],
                     ),
-                    children: [
-                      if (widget.isWeather)
-                        const TextSpan(
-                          text: '°',
-                        ),
-                    ],
                   ),
                 ),
-                const SizedBox(
-                  height: 35,
-                ),
-                const Text(
-                  'Roorkee, Uttrakhand',
-                  style: TextStyle(
+                // const SizedBox(
+                //   height: 35,
+                // ),
+                Text(
+                  '${widget.cityName}, India',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -87,13 +92,13 @@ class _HomePageCardState extends State<HomePageCard> {
             ),
           ),
         ),
-        if (widget.textBelowIcon)
+        if (widget.textBelowIcon.isNotEmpty)
           Container(
             margin: const EdgeInsets.only(top: 150, right: 50),
-            child: const Align(
+            child: Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                'Mid Rain',
+                widget.textBelowIcon,
                 style: TextStyle(
                   color: Colors.white,
                 ),
